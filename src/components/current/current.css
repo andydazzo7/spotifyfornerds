@@ -1,0 +1,49 @@
+.Oh button{
+    justify-content: center;
+    display: block;
+    margin:auto
+}
+.current h2{
+    font-size: 0.8rem;
+    margin: auto;
+    position: relative;
+    width:100%;
+    text-align: center;
+}
+.current h3{
+    margin:auto;
+    text-align: center;
+    color: #010c3f;
+}
+.Oh img{
+    max-width: 200px;
+    max-height: 400px;
+    display: block;    
+    position: relative;
+    margin:auto;
+    margin-top: 30px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.current p{
+    margin: auto;
+    text-align: center;
+}
+.Attr{
+    color: #010c3f;
+}
+.current button{
+    font-family:'Poppins', sans-serif;
+    cursor: pointer;
+    width: 10.11rem;
+    padding: .77rem 0;
+    border-radius: 54px;
+    background-color: #010c3f;
+    text-align: center;
+    font-size: .600rem;
+    transition: background-color .25s;
+    border: 0px;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 5px;
+}

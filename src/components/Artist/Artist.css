@@ -1,0 +1,19 @@
+img{
+    max-width: 150px;
+    max-height: 150px;
+    justify-content: center;
+}
+.Artist{
+    display: inline-block;
+    margin: 10px 25px;
+    justify-content: center;
+
+}
+.name{
+    max-width: 100px;
+    display: inline;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #010c3f;
+}
