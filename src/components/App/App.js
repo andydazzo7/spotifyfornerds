@@ -125,11 +125,12 @@ export class App extends React.Component {
     this.setState({liveness:live1});
   }
   render(){
+    console.log(this.state.mode)
       return (
         <div className="a">
       <h1>Spotify for <span className="highlight">Nerds</span></h1>
       <div className="App">
-        <h1>Search for Tracks and Make a Playlist</h1>
+        <h1 className='title'>Search for Tracks and Make a Playlist!</h1>
         <Current track={this.getCurrent} stats={this.getStats}/>
         <h2 className='inspo'>Need Some Inspiration? See your Top Artists!</h2>
         <select className='art' onChange={this.getTopArtists}>
@@ -147,13 +148,17 @@ export class App extends React.Component {
           <option value='reccomendations'>Automatically get a list of reccomendations from Spotify</option>
         </select>
        
-        <input id='song' className='rec'placeholder="Choose a Song to Base Reccomendations Off Of"onChange={this.handleRecTrack}></input>
+        {this.state.mode === 'reccomendations' && <div>
+          <p>To get reccomendations, you must choose choose a song or an artist. Then all other options are supplemental but will give you better reccomendations!</p>
+          <input id='song' className='rec'placeholder="Choose a Song to Base Reccomendations Off Of"onChange={this.handleRecTrack}></input>
         <input id='artist' className='rec' placeholder="Choose an Artist to Get Reccomendations Off Of"onChange={this.handleRecArtist}></input>
         <input id='dance'className='rec' placeholder="How Dancable is the Track (0-1)?"onChange={this.handleDance}></input>
         <input id='accoustic' className='rec' placeholder="How Acoustic is the Track(0-1)?"onChange={this.handleAccoustic}></input>
         <input id='energy' className='rec' placeholder="How Energetic is the Track(0-1)?" onChange={this.handleEnergy}></input>
         <input id='live' className='rec' placeholder="How Live (audience) is the Track(0-1)?" onChange={this.handleLive}></input>
-        
+        </div>
+
+      }
         <SearchBar onSearch={this.search} mode={this.state.mode} recArtist={this.state.recArtist} recTrack={this.state.recTrack} dance={this.state.dance}
         accoustic ={this.state.accoustic} energy={this.state.energy} live={this.state.liveness}/>
         <div className="App-playlist">

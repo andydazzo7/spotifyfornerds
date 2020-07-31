@@ -18,6 +18,7 @@ export class Current extends React.Component{
                 this.setState({track:result, id :result.id})
             }
             )
+        setInterval(this.props.track, 5000);
     }
     getStats(){
         this.props.stats(this.state.id).then(res=>{

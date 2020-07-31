@@ -1,7 +1,7 @@
 import SearchBar from "../components/SearchBar/SearchBar";
 let access_token;
 const clientID = '188724e97b2f44458488091d1e4dd56d';
-const redirect = 'http://spotifyfornerds.surge.sh';
+const redirect = 'http://localhost:3000';
 let Spotify ={
    
     getAccessToken(){
