@@ -1,7 +1,7 @@
 import SearchBar from "../components/SearchBar/SearchBar";
 let access_token;
 const clientID = '188724e97b2f44458488091d1e4dd56d';
-const redirect = 'http://localhost:3000';
+const redirect = 'https://spotifyfornerds.web.app';
 let Spotify ={
    
     getAccessToken(){
@@ -125,14 +125,14 @@ let Spotify ={
             Authorization :`Bearer ${accessToken}`
         }
         return fetch(current, {headers:headers}).then(response=>{
-            console.log(response);
+           // console.log(response);
             if(!response)
             {
                 return ''
             }
             return response.json()
         }).then(jsonResponse=>{
-            console.log(jsonResponse);
+           // console.log(jsonResponse);
             if(jsonResponse.item)
             {
             return {

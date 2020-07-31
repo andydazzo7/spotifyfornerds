@@ -5,23 +5,18 @@ export class Current extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            track: [],
-            id:0,
+            track: this.props.track,
+            id:this.props.id,
             attributes:[]
         }
         this.getStats= this.getStats.bind(this);
     }
     componentDidMount(){
-        this.props.track().then(result =>
-            {
-                console.log(result);
-                this.setState({track:result, id :result.id})
-            }
-            )
-        setInterval(this.props.track, 5000);
+        this.getStats()
+        setInterval(this.getStats, 1000)
     }
     getStats(){
-        this.props.stats(this.state.id).then(res=>{
+        this.props.stats(this.props.id).then(res=>{
             this.setState({attributes: res})
         });
     }
@@ -30,9 +25,9 @@ export class Current extends React.Component{
             <div className="Oh">
             <div className="current">
             <h2>You are currently Playing this Track</h2>
-              <h3>{this.state.track.name}</h3>
-              <p>{this.state.track.artist} | {this.state.track.album}</p>
-              <img src={this.state.track.img}></img>
+              <h3>{this.props.track.name}</h3>
+              <p>{this.props.track.artist} | {this.props.track.album}</p>
+              <img src={this.props.track.img}></img>
               <button onClick={this.getStats}>GET STATS FOR THIS SONG</button>
               <p className="Attr">Energy {this.state.attributes.energy} | Liveness {this.state.attributes.liveness} | Danceability  {this.state.attributes.danceability} | Acouticness {this.state.attributes.accousticness} </p>
             </div>

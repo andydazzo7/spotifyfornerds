@@ -20,7 +20,9 @@ export class App extends React.Component {
       accoustic:'0.0',
       energy:'0.0',
       liveness:'0.0',
-      topArtists: []
+      topArtists: [], 
+      track : [],
+      currid: ''
     }
      this.addTrack = this.addTrack.bind(this);
      this.removeTrack = this.removeTrack.bind(this);
@@ -36,6 +38,10 @@ export class App extends React.Component {
      this.handleLive=this.handleLive.bind(this);
      this.getCurrent= this.getCurrent.bind(this);
      this.getTopArtists = this.getTopArtists.bind(this);
+  }
+  componentDidMount(){
+    this.getCurrent()
+    setInterval(this.getCurrent, 1000);
   }
   addTrack(track){
     if(!(this.state.playlistTracks.includes(track.id)))
@@ -71,7 +77,12 @@ export class App extends React.Component {
     });
   }
   getCurrent(){
-     return Spotify.currentlyPlaying();
+      return Spotify.currentlyPlaying().then(result =>
+        {
+           // console.log(result);
+            this.setState({track : result, currid : result.id})
+        }
+        );
   }
   getStats(id){
     return Spotify.getStats(id);
@@ -125,13 +136,13 @@ export class App extends React.Component {
     this.setState({liveness:live1});
   }
   render(){
-    console.log(this.state.mode)
+    //console.log(this.state.currid)
       return (
         <div className="a">
       <h1>Spotify for <span className="highlight">Nerds</span></h1>
       <div className="App">
         <h1 className='title'>Search for Tracks and Make a Playlist!</h1>
-        <Current track={this.getCurrent} stats={this.getStats}/>
+        <Current track={this.state.track} id={this.state.currid} stats={this.getStats}/>
         <h2 className='inspo'>Need Some Inspiration? See your Top Artists!</h2>
         <select className='art' onChange={this.getTopArtists}>
           <option value='short_term'>Use This to Select the Time Period of Your Top Artists (will default to 4 weeks)</option>
