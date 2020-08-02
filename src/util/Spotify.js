@@ -2,6 +2,7 @@ import SearchBar from "../components/SearchBar/SearchBar";
 let access_token;
 const clientID = '188724e97b2f44458488091d1e4dd56d';
 const redirect = 'https://spotifyfornerds.web.app';
+// const redirect = 'http://localhost:3000'
 let Spotify ={
    
     getAccessToken(){
@@ -20,7 +21,7 @@ let Spotify ={
             window.history.pushState('Access Token', null, '/');
             return access_token;
         }else{
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public user-top-read user-read-currently-playing&redirect_uri=${redirect}`;
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public user-top-read user-read-currently-playing user-modify-playback-state&redirect_uri=${redirect}`;
             window.location = accessUrl;
         }
 
@@ -39,6 +40,22 @@ let Spotify ={
         });
 
 
+    },
+    next(){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        const accessUrl =`https://api.spotify.com/v1/me/player/next`
+        return fetch(accessUrl, {headers:headers, method:'POST'}).then(response=>console.log(response));
+    },
+    last(){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        const accessUrl =`https://api.spotify.com/v1/me/player/previous`
+        return fetch(accessUrl, {headers:headers, method:'POST'}).then(response=>console.log(response));
     },
     getTrackId(term){
         const accessToken = Spotify.getAccessToken();

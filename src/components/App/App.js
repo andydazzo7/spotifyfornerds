@@ -135,6 +135,12 @@ export class App extends React.Component {
     }
     this.setState({liveness:live1});
   }
+  skip(){
+    return Spotify.next();
+  }
+  last(){
+    return Spotify.last();
+  }
   render(){
     //console.log(this.state.currid)
       return (
@@ -142,7 +148,7 @@ export class App extends React.Component {
       <h1>Spotify for <span className="highlight">Nerds</span></h1>
       <div className="App">
         <h1 className='title'>Search for Tracks and Make a Playlist!</h1>
-        <Current track={this.state.track} id={this.state.currid} stats={this.getStats}/>
+        <Current track={this.state.track} id={this.state.currid} stats={this.getStats} last={this.last} skip={this.skip}/>
         <h2 className='inspo'>Need Some Inspiration? See your Top Artists!</h2>
         <select className='art' onChange={this.getTopArtists}>
           <option value='short_term'>Use This to Select the Time Period of Your Top Artists (will default to 4 weeks)</option>
