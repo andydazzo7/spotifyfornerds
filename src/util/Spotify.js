@@ -21,7 +21,7 @@ let Spotify ={
             window.history.pushState('Access Token', null, '/');
             return access_token;
         }else{
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public user-top-read user-read-currently-playing user-modify-playback-state&redirect_uri=${redirect}`;
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public user-top-read user-read-currently-playing user-modify-playback-state user-read-playback-state&redirect_uri=${redirect}`;
             window.location = accessUrl;
         }
 
@@ -41,6 +41,32 @@ let Spotify ={
 
 
     },
+    isplaying(){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        const accessUrl =`https://api.spotify.com/v1/me/player`;
+        return fetch(accessUrl, {headers:headers}).then(response =>response.json()).then(jsonResponse =>{
+            return jsonResponse.is_playing
+        });
+    }, 
+    pause(){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        const accessUrl =`https://api.spotify.com/v1/me/player/pause`
+        return fetch(accessUrl, {headers:headers, method:'PUT'}).then(response=>console.log(response));
+    },
+    play(){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        const accessUrl =`https://api.spotify.com/v1/me/player/play`
+        return fetch(accessUrl, {headers:headers, method:'PUT'}).then(response=>console.log(response));
+    }, 
     next(){
         const accessToken = Spotify.getAccessToken();
         const headers = {
