@@ -14,7 +14,7 @@ export function ArtistModal(props) {
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
         Spotify.getArtistTopTracks(props.artist).then(results=>setSongs(results));
-        Spotify.getRelatedArtists(props.artist).then(results=>setArists(results));
+     
     });
   
     return (
@@ -30,8 +30,6 @@ export function ArtistModal(props) {
           </Modal.Header>
           <Modal.Body>Top Tracks</Modal.Body>
           <TrackList tracks={songs}/>
-          <Modal.Body>Related Artists</Modal.Body>
-          <ArtistList artists={artists}/>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close

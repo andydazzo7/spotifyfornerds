@@ -152,7 +152,7 @@ export class App extends React.Component {
         <Current track={this.state.track} id={this.state.currid} stats={this.getStats} last={this.last} skip={this.skip}/>
         <h2 className='inspo'>Need Some Inspiration? See your Top Artists!</h2>
         <select className='art' onChange={this.getTopArtists}>
-          <option value='short_term'>Use This to Select the Time Period of Your Top Artists (will default to 4 weeks)</option>
+          <option value='short_term'>Use This to Select the Time Period of Your Top Artists</option>
           <option value="short_term">Get your Top 10 artists of the past 4 weeks</option>
           <option value="medium_term">Get your Top 10 artists of the past 6 months</option>
           <option value="long_term">Get your Top 10 artists of all time</option>
