@@ -22,7 +22,8 @@ export class App extends React.Component {
       liveness:'0.0',
       topArtists: [], 
       track : [],
-      currid: ''
+      currid: '',
+
     }
      this.addTrack = this.addTrack.bind(this);
      this.removeTrack = this.removeTrack.bind(this);

@@ -41,6 +41,46 @@ let Spotify ={
 
 
     },
+    getArtistTopTracks(artist){
+
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+       
+       return this.getArtistId(artist).then(id=> fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?country=US`, {headers:headers}).then(response=>response.json()).then(jsonResponse=>
+            {
+                console.log(jsonResponse);
+                if(jsonResponse.tracks){
+                    return jsonResponse.tracks.map(track =>({
+                        id: track.id,
+                        title: track.name,
+                        artist: track.artists[0].name,
+                        album: track.album.name,
+                        uri : track.uri,
+                        img: track.album.images[0].url
+                    }));
+                }
+            }))
+
+    },
+    getRelatedArtists(artist){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        return this.getArtistId(artist).then(id=> fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {headers:headers}).then(response=>response.json()).then(jsonResponse=>
+        {
+            console.log(jsonResponse);
+            if(jsonResponse.artists){
+                return jsonResponse.artists.map(artist =>({
+                    id: artist.id,
+                    name: artist.name,
+                    img: artist.images[0].url
+                }));
+            }
+        }))
+    },
     isplaying(){
         const accessToken = Spotify.getAccessToken();
         const headers = {
