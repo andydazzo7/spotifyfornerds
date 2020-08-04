@@ -201,6 +201,14 @@ let Spotify ={
                 }
             })
     },
+    addToQueue(uri){
+        const accessToken = Spotify.getAccessToken();
+        const headers = {
+            Authorization :`Bearer ${accessToken}`
+        }
+        const accessUrl =`https://api.spotify.com/v1/me/player/queue?uri=${uri}`
+        return fetch(accessUrl, {headers:headers, method:'POST'}).then(response=>console.log(response));
+    },
     currentlyPlaying(){
         const accessToken = Spotify.getAccessToken();
         const current = `https://api.spotify.com/v1/me/player/currently-playing`;

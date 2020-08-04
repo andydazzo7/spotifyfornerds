@@ -142,6 +142,7 @@ export class App extends React.Component {
   last(){
     return Spotify.last();
   }
+ 
   render(){
     //console.log(this.state.currid)
       return (
